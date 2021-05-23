@@ -5,7 +5,12 @@
   "repository": "https://github.com/yamatatsu/zenn-contents.git",
   "author": "yamatatsu <the.kinnikuman@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "zenn preview",
+    "article": "zenn new:article"
+  },
   "dependencies": {
+    "prettier": "^2.3.0",
     "zenn-cli": "^0.1.80"
   }
 }
