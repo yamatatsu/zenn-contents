@@ -8,7 +8,7 @@ published: false
 
 # 課題
 
-aws-cdk の `NodejsFunction` の snapshot test が、GitHub Actions 上でコケる。
+ローカルで通した aws-cdk の `NodejsFunction` の snapshot test が、GitHub Actions 上でコケる。
 
 # tl;dr
 
