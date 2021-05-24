@@ -3,7 +3,7 @@ title: "[AWS-CDK] NodejsFunction の snapshot test がCI環境で落ちる"
 emoji: "🐳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["awscdk", "docker", "lambda"]
-published: false
+published: true
 ---
 
 # 課題
