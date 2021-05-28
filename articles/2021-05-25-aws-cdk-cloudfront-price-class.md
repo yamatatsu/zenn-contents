@@ -1,8 +1,8 @@
 ---
-title: "[AWS-CDK] lambda@edge のログが見つからない"
+title: "[AWS-CDK] lambda@edge のログが見つからないときはカリフォルニアにあるかも"
 emoji: "📌"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: ["awscdk", "cloudfront"]
 published: true
 ---
 
