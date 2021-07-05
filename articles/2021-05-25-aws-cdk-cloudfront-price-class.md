@@ -12,7 +12,7 @@ aws-cdk で建てた Cloud Front の lambda@edge のログがどこにも見つ�
 
 # tl;dr
 
-- カリフォルニア(`us-east-1`)の CloudWatch Losgs にあるかもよ。カリフォルニアになかったら、カナダとかアメリカとかヨーロッパのリージョンで CloudWatch Logs を確認してみよう。
+- カリフォルニア(`us-west-1`)の CloudWatch Losgs にあるかもよ。カリフォルニアになかったら、カナダとかアメリカとかヨーロッパのリージョンで CloudWatch Logs を確認してみよう。
 - エッジを利かすためにも `priceClass: cloudfront.PriceClass.PRICE_CLASS_200` を設定しよう。
 
 # 何が起きたの？
