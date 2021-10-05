@@ -3,8 +3,10 @@ title: "@aws-cdk/aws-iot の L2 の設計を考えてみる"
 emoji: "📖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [aws, awscdk, awsiot]
-published: false
+published: true
 ---
+
+考え中の公開ノート。
 
 # 考え中
 
@@ -85,26 +87,11 @@ package として分離している。aws-events-targets と同じイメージ�
 
 ```mermaid
 classDiagram
-  IAction <|.. CloudwatchAlarmAction
-  IAction <|.. CloudwatchLogsAction
-  IAction <|.. CloudwatchMetricAction
   IAction <|.. DynamoDBAction
-  IAction <|.. DynamoDBv2Action
-  IAction <|.. ElasticsearchAction
-  IAction <|.. FirehoseAction
-  IAction <|.. HttpAction
-  IAction <|.. IotAnalyticsAction
-  IAction <|.. IotEventsAction
-  IAction <|.. IotSiteWiseAction
-  IAction <|.. KafkaAction
-  IAction <|.. KinesisAction
   IAction <|.. LambdaAction
-  IAction <|.. RepublishAction
   IAction <|.. S3Action
   IAction <|.. SnsAction
   IAction <|.. SqsAction
-  IAction <|.. StepFunctionsAction
-  IAction <|.. TimestreamAction
 
   class IAction{
     bind() ActionConfig
@@ -112,6 +99,29 @@ classDiagram
   <<Interface>> IAction
 
 ```
+
+作るべきActionクラスは以下の通り。多い。。。
+
+- [On Going] CloudwatchAlarmAction
+- [On Going] CloudwatchLogsAction
+- [On Going] CloudwatchMetricAction
+- [On Going] DynamoDBAction
+- [On Going] DynamoDBv2Action
+- [On Going] LambdaAction
+- [On Going] RepublishAction
+- [On Going] S3Action
+- [On Going] SnsAction
+- [On Going] SqsAction
+- [To Be Developed] ElasticsearchAction
+- [To Be Developed] FirehoseAction
+- [To Be Developed] HttpAction
+- [To Be Developed] IotAnalyticsAction
+- [To Be Developed] IotEventsAction
+- [To Be Developed] IotSiteWiseAction
+- [To Be Developed] KafkaAction
+- [To Be Developed] KinesisAction
+- [To Be Developed] StepFunctionsAction
+- [To Be Developed] TimestreamAction
 
 # 一旦考えない
 
