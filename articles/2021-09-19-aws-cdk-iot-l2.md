@@ -3,12 +3,16 @@ title: "@aws-cdk/aws-iot の L2 の設計を考えてみる"
 emoji: "📖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [aws, awscdk, awsiot]
-published: false
+published: true
 ---
+
+考え中の公開ノート。
 
 # 考え中
 
 ## TopicRule
+
+進捗：コミットした。まだまだ Action を実装していく必要あり。
 
 方針
 
@@ -33,26 +37,7 @@ classDiagram
   <<Interface>> IAction
 
   class ActionConfig{
-    CloudwatchAlarmActionProperty?: cloudwatchAlarm
-    CloudwatchLogsActionProperty?: cloudwatchLogs
-    CloudwatchMetricActionProperty?: cloudwatchMetric
-    DynamoDBActionProperty?: dynamoDb
-    DynamoDBv2ActionProperty?: dynamoDBv2
-    ElasticsearchActionProperty?: elasticsearch
-    FirehoseActionProperty?: firehose
-    HttpActionProperty?: http
-    IotAnalyticsActionProperty?: iotAnalytics
-    IotEventsActionProperty?: iotEvents
-    IotSiteWiseActionProperty?: iotSiteWise
-    KafkaActionProperty?: kafka
-    KinesisActionProperty?: kinesis
-    LambdaActionProperty?: lambda
-    RepublishActionProperty?: republish
-    S3ActionProperty?: s3
-    SnsActionProperty?: sns
-    SqsActionProperty?: sqs
-    StepFunctionsActionProperty?: stepFunctions
-    TimestreamActionProperty?: timestream
+    CfnTopicRule.ActionProperty: configuration
   }
   <<Interface>> ActionConfig
 
@@ -62,16 +47,10 @@ classDiagram
 
 ```mermaid
 classDiagram
-  TopicRuleProps o.. TopicRulePayloadProperty
-
   class TopicRuleProps {
     string?: ruleName
-    TopicRulePayloadProperty: topicRulePayload
-  }
-  class TopicRulePayloadProperty {
     string: sql
     Array<IAction>: actions
-    string?: awsIotSqlVersion
     string?: description
     IAction?: errorAction
     boolean?: ruleDisabled
@@ -85,26 +64,11 @@ package として分離している。aws-events-targets と同じイメージ�
 
 ```mermaid
 classDiagram
-  IAction <|.. CloudwatchAlarmAction
-  IAction <|.. CloudwatchLogsAction
-  IAction <|.. CloudwatchMetricAction
   IAction <|.. DynamoDBAction
-  IAction <|.. DynamoDBv2Action
-  IAction <|.. ElasticsearchAction
-  IAction <|.. FirehoseAction
-  IAction <|.. HttpAction
-  IAction <|.. IotAnalyticsAction
-  IAction <|.. IotEventsAction
-  IAction <|.. IotSiteWiseAction
-  IAction <|.. KafkaAction
-  IAction <|.. KinesisAction
   IAction <|.. LambdaAction
-  IAction <|.. RepublishAction
   IAction <|.. S3Action
   IAction <|.. SnsAction
   IAction <|.. SqsAction
-  IAction <|.. StepFunctionsAction
-  IAction <|.. TimestreamAction
 
   class IAction{
     bind() ActionConfig
@@ -112,6 +76,29 @@ classDiagram
   <<Interface>> IAction
 
 ```
+
+作るべき Action クラスは以下の通り。多い。。。
+
+- [On Going] CloudwatchAlarmAction
+- [On Going] CloudwatchLogsAction
+- [On Going] CloudwatchMetricAction
+- [On Going] DynamoDBAction
+- [On Going] DynamoDBv2Action
+- [On Going] LambdaAction
+- [On Going] RepublishAction
+- [On Going] S3Action
+- [On Going] SnsAction
+- [On Going] SqsAction
+- [To Be Developed] ElasticsearchAction
+- [To Be Developed] FirehoseAction
+- [To Be Developed] HttpAction
+- [To Be Developed] IotAnalyticsAction
+- [To Be Developed] IotEventsAction
+- [To Be Developed] IotSiteWiseAction
+- [To Be Developed] KafkaAction
+- [To Be Developed] KinesisAction
+- [To Be Developed] StepFunctionsAction
+- [To Be Developed] TimestreamAction
 
 # 一旦考えない
 
@@ -190,3 +177,50 @@ classDiagram
       }
 
 ```
+
+# コミット済み
+
+# ナレッジ、苦しんだこと
+
+もしかしたら人のためになるかもしれないことも書いてみる。
+
+## package をビルドするとき
+
+コミットしたい package があったとして、その package が依存しているすべての package を依存グラフに基づいてビルドしなければいけない。
+
+以下 scripts でトポロジカルソートした順序でビルドしていってくれる。
+でも全部再ビルドするから効率は良くない。。。
+
+```
+scripts/buildup
+```
+
+## ゴミビルドが残っているとき
+
+リポジトリを久しぶりに pull したり、別の package を開発した直後だったりすると、存在してはいけない`*.js`や`*.d.ts`が残っている場合がある。これらがビルドを邪魔する時がある。
+
+以下 script でいらん成果物を削除してくれる。
+
+```
+scripts/clean-stale-files.sh
+```
+
+## lint で怒られる。
+
+頑張るしかない。「doc 書いてよ」系は自分で作文するより公式 Document の文をオマージュする感じのほうが安全と思う。
+
+この作業が一番ボリュームあるかもしれない。
+
+## CodeBuild が通らない
+
+いやこれが一番時間食った。
+
+https://github.com/aws/aws-cdk/pull/16681#issuecomment-929944810
+
+flaky に`Out of memory`がでる。辛い。
+
+`Out of memory`について、未だ根本的な解決してない。
+
+加えて、flaky な箇所の先で、`individual-packages`上で行われるテストがコケてて辛かった。再現方法がわからん now。`scripts/transform.sh`で`individual-packages`の中身を作ってから build すれば良いんだと思われるがなかなかビルドが通らん now。
+
+更新したい。
