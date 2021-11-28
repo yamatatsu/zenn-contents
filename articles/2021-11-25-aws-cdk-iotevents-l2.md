@@ -1,5 +1,5 @@
 ---
-title: "@aws-cdk/aws-iot-events の L2 の設計を考えてみる"
+title: "@aws-cdk/aws-iotevents の L2 の設計を考えてみる"
 emoji: "📖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [aws, awscdk, awsiotevents]
