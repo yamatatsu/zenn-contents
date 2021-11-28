@@ -66,11 +66,11 @@ classDiagram
   Definition ..> State
   State ..> StateProps
   State ..> TransitionEvent
-  State --|> IState
+  State ..|> IState
   StateProps ..> Event
   TransitionEvent ..> IState
-  Event --|> IEvent
-  TransitionEvent --|> IEvent
+  Event ..|> IEvent
+  TransitionEvent ..|> IEvent
 
   class Definition {
     -initialState: State
