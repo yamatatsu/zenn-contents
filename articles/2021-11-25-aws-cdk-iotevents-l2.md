@@ -197,16 +197,16 @@ class State {
 
 ## Roadmap
 
-1. implement `DetectorModel`, `Definition` and `State` with only require properties
-   - it will not be able to have multiple states yet.
+1. implement `DetectorModel`, `Definition` and `State` with only required properties
+   - It will not be able to have multiple states yet.
 2. implement `state.addTransition()`
-   - it will be able to have multiple states and to transit.
-   - it will not be able to have events that is without transition.
-   - it will not be able to perform actions.
+   - It will be able to have multiple states and to transit.
+   - It will not be able to have events that is without transition.
+   - It will not be able to perform actions.
 3. implement `IAction` and a action `SetTimer`
    - Note: AWS IoT Events has many actions like AWS IoT Core. https://docs.aws.amazon.com/iotevents/latest/apireference/API_Action.html
 4. implement some actions (separate PRs for each actions)
-   - it will be able to perform actions.
+   - It will be able to perform actions.
 5. implement `Event` and use it in `State`
-   - it will be able to have events that is without transition.
+   - It will be able to have events that is without transition.
 6. implement remaining actions (separate PRs for each actions)

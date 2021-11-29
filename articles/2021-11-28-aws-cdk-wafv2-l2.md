@@ -8,11 +8,9 @@ published: true
 
 考え中の公開ノート。
 
-## Design
+## WebACL
 
-### WebACL
-
-#### CFn
+### CFn
 
 [webacl](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html)
 
@@ -22,9 +20,9 @@ CloudFormation はこんな感じ。
 
 [Statement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-statement.html#cfn-wafv2-webacl-statement-ipsetreferencestatement)はめんどいやつ。別パッケージ切るパターンか。
 
-#### Design
+### Design
 
-##### WebACL
+#### WebACL
 
 ```mermaid
 classDiagram
@@ -92,7 +90,7 @@ classDiagram
   <<Interface>> VisibilityConfig
 ```
 
-##### Rule
+#### Rule
 
 ```mermaid
 classDiagram
@@ -147,7 +145,27 @@ classDiagram
   <<Interface>> StatementConfig
 ```
 
-#### Usage
+Statements
+
+- Logical
+  - AndStatement
+  - NotStatement
+  - OrStatement
+- Depends on other resources
+  - IPSetReferenceStatement
+  - RegexPatternSetReferenceStatement
+  - RuleGroupReferenceStatement
+- Others
+  - ByteMatchStatement
+  - GeoMatchStatement
+  - LabelMatchStatement
+  - ManagedRuleGroupStatement
+  - RateBasedStatement
+  - SizeConstraintStatement
+  - SqliMatchStatement
+  - XssMatchStatement
+
+### Usage
 
 ```ts
 new wafv2.WebACL(this, "WebACL", {
@@ -176,3 +194,11 @@ new wafv2.WebACL(this, "WebACL", {
 
 > Note: `visibilityConfig` have default value.
 > If `WebACLProps.visibilityConfig` is set, Rules inherit it.
+
+### Roadmap
+
+1. implement `WebACL` with only required properties
+   - It will not be able to use Rules
+1. implement `Rule` with one `Statement`(LabelMatchStatement)
+1. implement other remaining properties
+1. implement Statements
