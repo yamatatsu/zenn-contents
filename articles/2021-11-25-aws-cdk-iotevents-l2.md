@@ -31,9 +31,9 @@ DetectorModel:
 
 ```mermaid
 classDiagram
-  DetectorModel --> DetectorModelProps
-  DetectorModelProps ..> EvaluationMethod
-  DetectorModelProps ..> Definition
+  DetectorModel ..> DetectorModelProps
+  DetectorModelProps o.. EvaluationMethod
+  DetectorModelProps o.. State
 
   class DetectorModel {
     +constructor(props: DetectorModelProps)
@@ -44,11 +44,11 @@ classDiagram
     key?: string;
     evaluationMethod?: EvaluationMethod;
     role?: IRole;
-    definition: Definition;
+    initialState: State;
   }
   <<Interface>> DetectorModelProps
 
-  class Definition {
+  class State {
   }
 
   class EvaluationMethod{
@@ -59,25 +59,17 @@ classDiagram
 
 ```
 
-Definition:
+State:
 
 ```mermaid
 classDiagram
-  Definition ..> State
   State ..> StateProps
   State ..> TransitionEvent
   State ..|> IState
-  StateProps ..> Event
+  StateProps o.. Event
   TransitionEvent ..> IState
   Event ..|> IEvent
   TransitionEvent ..|> IEvent
-
-  class Definition {
-    -initialState: State
-    -states: Set<State>
-    +constructor(startState: State)
-    +toCfn()
-  }
 
   class State {
     +constructor(props: StateProps)
@@ -115,56 +107,58 @@ classDiagram
 usage:
 
 ```ts
-const timer = new Timer('heartbeatTimer', 60)
+const timer = new iotevents.Timer("heartbeatTimer", 60);
 
 // Define nodes of the state machine
 const onlineState = new iotevents.State({
-  stateName: 'online',
-  onEnterEvents: [{
-    eventName: 'setTimer',
-    actions: [timer.set()], // `timer.set()` return `SetTimerAction`
-  }],
-  onInputEvents: [{
-    eventName: 'resetTimer',
-    condition: 'currentInput("HeartbeatInputData")',
-    actions: [timer.reset()], // `timer.reset()` return `ResetTimerAction`
-  }],
+  stateName: "online",
+  onEnterEvents: [
+    {
+      eventName: "setTimer",
+      actions: [timer.set()], // `timer.set()` return `SetTimerAction`
+    },
+  ],
+  onInputEvents: [
+    {
+      eventName: "resetTimer",
+      condition: 'currentInput("HeartbeatInputData")',
+      actions: [timer.reset()], // `timer.reset()` return `ResetTimerAction`
+    },
+  ],
 });
 const offlineState = new iotevents.State({
-  stateName: 'offline',
+  stateName: "offline",
 });
 
 // Define edges of the state machine
 onlineState.addTransition({
-  eventName: 'to_offline',
+  eventName: "to_offline",
   condition: timer.timeout(), // `timer.timeout()` return just string
   nextState: offlineState,
-})
+});
 offlineState.addTransition({
-  eventName: 'to_online',
+  eventName: "to_online",
   condition: 'currentInput("HeartbeatInputData")',
   nextState: onlineState,
-})
+});
 
 // Define the state machine
-new iotevents.DetectorModel(this, 'DetectorModel', {
-  definition: new iotevents.Definition(onlineState);
-})
+new iotevents.DetectorModel(this, "DetectorModel", {
+  initialState: onlineState,
+});
 ```
 
-Definition:
+DetectorModel:
 
 ```ts
-class Definition {
-  public definition: CfnDetectorModel.DetectorModelDefinitionProperty;
-
+class DetectorModel {
   constructor(private readonly initialState: State) {}
 
-  toCfn() {
-    const stateSet = initialState.getGraphStates();
+  getDefinition() {
+    const stateSet = this.initialState.getGraphStates();
 
     return {
-      initialState: initialState.stateName,
+      initialState: this.initialState.stateName,
       states: Array.from(stateSet).map((state) => state.toCfn()),
     };
   }
@@ -197,7 +191,7 @@ class State {
 
 ## Roadmap
 
-1. implement `DetectorModel`, `Definition` and `State` with only required properties
+1. implement `DetectorModel` and `State` with only required properties
    - It will not be able to have multiple states yet.
 2. implement `state.addTransition()`
    - It will be able to have multiple states and to transit.
