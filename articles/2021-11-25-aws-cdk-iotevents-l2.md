@@ -154,7 +154,7 @@ DetectorModel:
 class DetectorModel {
   constructor(private readonly initialState: State) {}
 
-  getDefinition() {
+  private getDefinition() {
     const stateSet = this.initialState.getGraphStates();
 
     return {
