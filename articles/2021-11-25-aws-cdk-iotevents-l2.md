@@ -73,7 +73,7 @@ classDiagram
 
   class State {
     +constructor(props: StateProps)
-    +addTransition(transitionEvent: TransitionEvent)
+    +transitionTo(state: IState, transitionEvent: TransitionEvent)
     +getGraphStates(stateSet?: Set<State>)
   }
   class StateProps {
@@ -131,15 +131,13 @@ const offlineState = new iotevents.State({
 });
 
 // Define edges of the state machine
-onlineState.addTransition({
+onlineState.transitionTo(offlineState, {
   eventName: "to_offline",
   condition: timer.timeout(), // `timer.timeout()` return just string
-  nextState: offlineState,
 });
-offlineState.addTransition({
+offlineState.transitionTo(onlineState, {
   eventName: "to_online",
   condition: 'currentInput("HeartbeatInputData")',
-  nextState: onlineState,
 });
 
 // Define the state machine
@@ -193,7 +191,7 @@ class State {
 
 1. implement `DetectorModel` and `State` with only required properties
    - It will not be able to have multiple states yet.
-2. implement `state.addTransition()`
+2. implement `state.transitionTo()`
    - It will be able to have multiple states and to transit.
    - It will not be able to have events that is without transition.
    - It will not be able to perform actions.
