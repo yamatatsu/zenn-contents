@@ -67,7 +67,7 @@ classDiagram
   State ..> TransitionEvent
   State ..|> IState
   StateProps o.. Event
-  TransitionEvent ..> IState
+  IState o.. TransitionEvent
   Event ..|> IEvent
   TransitionEvent ..|> IEvent
 
