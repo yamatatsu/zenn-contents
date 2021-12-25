@@ -19,11 +19,6 @@
   resolved "https://registry.yarnpkg.com/@steelydylan/prism-diff-highlight/-/prism-diff-highlight-1.0.4.tgz#aa9328c472af3e7c63e1830ba9375b128e5f9f58"
   integrity sha512-1M16pY3PvWVScLrYj9nENZm1yQ+V/w2YoB6NMZkv+/O/nAHoRg6qS1BX8FNnCKSbIk52QIwj+NUi/sUK2EMuew==
 
-"@types/prismjs@^1.16.1":
-  version "1.16.5"
-  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.5.tgz#378f491ff02304ce50924b05283111d4a286ecba"
-  integrity sha512-nSU7U6FQDJJCraFNwaHmH5YDsd/VA9rTnJ7B7AGFdn+m+VSt3FjLWN7+AbqxZ67dbFazqtrDFUto3HK4ljrHIg==
-
 accepts@~1.3.7:
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.7.tgz#531bc726517a3b2b41f850021c6cc15eaab507cd"
@@ -688,15 +683,15 @@ picomatch@^2.0.4, picomatch@^2.2.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
 
-prettier@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.0.tgz#85bdfe0f70c3e777cf13a4ffff39713ca6f64cba"
-  integrity sha512-DsEPLY1dE5HF3BxCRBmD4uYZ+5DCbvatnolqTqcxEgKVZnL2kUfyu7b8pPQ5+hTBkdhU9SLUmK0/pHb07RE4WQ==
+prettier@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
+  integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
 
-prismjs@^1.24.1:
-  version "1.24.1"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.24.1.tgz#c4d7895c4d6500289482fa8936d9cdd192684036"
-  integrity sha512-mNPsedLuk90RVJioIky8ANZEwYm5w9LcvCXrxHlwf4fNVSn8jEipMybMkWUyyF0JhnC+C4VcOVSBuHRKs1L5Ow==
+prismjs@^1.25.0:
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.25.0.tgz#6f822df1bdad965734b310b315a23315cf999756"
+  integrity sha512-WCjJHl1KEWbnkQom1+SzftbtXMKQoezOCYs5rECqMN+jP+apI7ftoflyqigqzopSO3hMhTEb0mFClA8lkolgEg==
 
 proxy-addr@~2.0.5:
   version "2.0.7"
@@ -867,10 +862,10 @@ ws@^7.4.6:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.5.tgz#8b4bc4af518cfabd0473ae4f99144287b33eb881"
   integrity sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==
 
-zenn-cli@^0.1.95:
-  version "0.1.95"
-  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.95.tgz#d8ddb8e5e345a946c77677b56bb14966e050ee83"
-  integrity sha512-8VwvMyMvqg4IEIk0qKTfB9N5LnR9wQMkuJc4jBDlf/NeVgcs53GORyjlAJ8unAtW6sUGdPa3vqpB/DPnZW4Guw==
+zenn-cli@^0.1.100:
+  version "0.1.100"
+  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.100.tgz#58d44cfdab35e651b00a79621af7acbd2716ae59"
+  integrity sha512-vqROUN2seFTPMOmyG1FwiB+dzN1LhxBvZPEeMGv96k2HIQYy/IIFjDgaygFDXayxAS1rOc8vQh3Ax4KyU5/axA==
   dependencies:
     arg "^5.0.0"
     cheerio "^1.0.0-rc.10"
@@ -886,16 +881,15 @@ zenn-cli@^0.1.95:
     node-fetch "^2.6.1"
     open "^8.2.0"
     ws "^7.4.6"
-    zenn-markdown-html "^0.1.95"
+    zenn-markdown-html "^0.1.100"
 
-zenn-markdown-html@^0.1.95:
-  version "0.1.95"
-  resolved "https://registry.yarnpkg.com/zenn-markdown-html/-/zenn-markdown-html-0.1.95.tgz#21bace0a16525f992aa8a717f7466dddd926ad16"
-  integrity sha512-FZ8YZTfdVb3lJSbgjb7w6Pe+GrM0DpPnJu7FF+ZrFEkdtSyGtbtxQSSWmvkBorc7VN/Wj4MGsb/Oou1uafmtBQ==
+zenn-markdown-html@^0.1.100:
+  version "0.1.100"
+  resolved "https://registry.yarnpkg.com/zenn-markdown-html/-/zenn-markdown-html-0.1.100.tgz#4317c0ea8874db3b8d1665bb780c1c02ad8db61d"
+  integrity sha512-7Ryr9U3DgpVJeTco53NWtjlGnXm2OgKLdJhXW328BVFG+94iOAPnzixkcLOL3zckSvqks3U6nhpmPvARubwM/A==
   dependencies:
     "@steelydylan/markdown-it-imsize" "^1.0.2"
     "@steelydylan/prism-diff-highlight" "1.0.4"
-    "@types/prismjs" "^1.16.1"
     markdown-it "^11.0.0"
     markdown-it-anchor "^8.1.2"
     markdown-it-container "^2.0.0"
@@ -903,4 +897,4 @@ zenn-markdown-html@^0.1.95:
     markdown-it-inline-comments "^1.0.1"
     markdown-it-link-attributes "^3.0.0"
     markdown-it-task-lists "^2.1.1"
-    prismjs "^1.24.1"
+    prismjs "^1.25.0"

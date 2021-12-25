@@ -1,0 +1,24 @@
+title: "AWS CDK ドキュメント(翻訳メモ)"
+summary: "AWS CDK ドキュメントの個人用翻訳メモ。最新を追従したりはしないつもりです。"
+topics: [awscdk]
+published: true
+price: 0
+chapters:
+  - 00-what-is-this-book
+  - 01-what-is-the-aws-cdk
+  - 02-concepts-constructs
+  - 03-concepts-apps
+  - 04-concepts-stacks
+  - 05-concepts-environments
+  - 06-concepts-resources
+  - 07-concepts-identifiers
+  - 08-concepts-tokens
+  - 09-concepts-parameters
+  - 10-concepts-tagging
+  - 11-concepts-assets
+  - 12-concepts-permissions
+  - 13-concepts-context
+  - 14-concepts-feature-flags
+  - 15-concepts-aspects
+  - 16-concepts-escape-hatches
+  - 17-concepts-bootstrapping
