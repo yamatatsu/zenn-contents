@@ -2,6 +2,8 @@
 title: "What is the AWS CDK?"
 ---
 
+[元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/home.html)
+
 The AWS CDK を使うと reliable, scalable, cost-effective な applications をビルドできます。
 
 AWS CDK の利点
