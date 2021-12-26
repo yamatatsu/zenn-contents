@@ -33,7 +33,7 @@ Composition を使用すると、再利用可能なコンポーネントを定�
 Construct は、 Construct base class を拡張して実装されます。クラスをインスタンス化することにより、 Construct を定義します。すべての Construct は、初期化時に 3 つのパラメーターを取ります。
 
 - **Scope** – 親となる Construct をここに渡します。通常は `this` を渡します。これによりクラスのインスタンスを親 Construct として、新たな Construct が生成することができます。
-- **id** – この Scope 内で一意である必要がある [Identifier](./07-concepts-identifiers.md) 。 Identifier は、現在の Construct 内で定義されているすべての名前空間として機能し、[resource name](./06-concepts-resources.md#Physical-names)や CFn の論理 ID などの一意の ID を割り当てるために使用されます。
+- **id** – この Scope 内で一意である必要がある [Identifier](./07-concepts-identifiers) 。 Identifier は、現在の Construct 内で定義されているすべての名前空間として機能し、[resource name](./06-concepts-resources#Physical-names)や CFn の論理 ID などの一意の ID を割り当てるために使用されます。
 - **Props** – Construct の設定値。ほとんどの場合、 Construct は適切なデフォルトが定義されています。すべての props 要素がオプションの場合は、props パラメーターを完全に省略できます。
 
 Identifier は、 Scope 内で一意でさえあればいいです。つまり、Scope が異なるなら id の重複は許容されます。これのおかげで、同一 Scope 内で Construct の再利用ができます。
@@ -124,7 +124,7 @@ new s3.Bucket(this, "MyFirstBucket", {
 
 :::message
 **Note**
-上記の例で作成するバケットの名前では`MyFirstBucket`ありません。新しい Construct に与えられた logical identifier が設定されます。詳細については、[Physical names](./06-concepts-resources.md#Physical-names) を参照してください。
+上記の例で作成するバケットの名前では`MyFirstBucket`ありません。新しい Construct に与えられた logical identifier が設定されます。詳細については、[Physical names](./06-concepts-resources#Physical-names) を参照してください。
 :::
 
 ## Configuration
@@ -170,7 +170,7 @@ const createJobLambda = new lambda.Function(this, "create-job", {
 上記の例にて、CDK のランタイム上では、`jobsQueue.queueUrl`が持つ文字列は実際の URL 文字列ではありません。CFn テンプレートとしてアウトプットされた際に`{ Ref: <CFn上のResource名> }`のように変換される文字列が入っています。この`{ Ref: <CFn上のResource名> }`は CFn によってリソース間の依存関係として解釈され、CFn はこれをもとにリソースの生成順序をコントロールします。このように「CFn によって解釈される依存関係」を CDK 上で表現しないと、デプロイ時に（開発時には発生しなかった）思わぬデプロイエラーが発生することがあります。
 :::
 
-AWS Construct Library の一般的な API パターンについては、[resources](./06-concepts-resources.md)を参照してください。
+AWS Construct Library の一般的な API パターンについては、[resources](./06-concepts-resources)を参照してください。
 
 ## Writing your own constructs
 
@@ -263,7 +263,7 @@ Construct tree は、Construct が最終的な CFn テンプレートのリソ�
 
 The AWS CDK provides a simple way to visit every node in the construct tree and perform an operation on each one. See Aspects.
 
-AWS CDK は、Construct tree 内のすべての node にアクセスし、各 node で操作を実行する簡単な方法を提供します。[Aspects](./15-concepts-aspects.md)を参照してください。
+AWS CDK は、Construct tree 内のすべての node にアクセスし、各 node で操作を実行する簡単な方法を提供します。[Aspects](./15-concepts-aspects)を参照してください。
 
 やまたつ解説
 
