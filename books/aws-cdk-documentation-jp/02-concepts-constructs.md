@@ -4,6 +4,24 @@ title: "Concepts - Constructs"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/constructs.html)
 
+## tl;dt
+
+AWS CDK では主に App => Stack => AWS_Resource で構成される木構造を定義して、これをデプロイします。この章ではこれらの `App`, `Stack`, `AWS_Resource` すべての基底クラスである `Construct` クラスに焦点を当てて、その仕掛けや派生クラスについて説明しています。
+
+_App => Stack => AWS_Resource の木構造_
+
+```mermaid
+flowchart TD
+  App-->Stack1
+  App-->Stack2
+  Stack1-->AWS_Resource1
+  Stack1-->AWS_Resource2
+  Stack2-->AWS_Resource3
+  Stack2-->AWS_Resource4
+```
+
+## 本文
+
 Construct は、AWS CDK の基本的な構成要素です。 Construct は "cloud component" を表し、CFn がコンポーネントを作成するために必要なすべてのものをカプセル化します。
 
 :::message
@@ -16,19 +34,19 @@ AWS CDK には、 AWS Construct Library と呼ばれる Construct のコレク�
 
 https://constructs.dev/search
 
-## AWS Construct library
+### AWS Construct library
 
 AWS CDK の API リファレンス
 
 https://docs.aws.amazon.com/cdk/api/v2/docs/aws-construct-library.html
 
-## Composition
+### Composition
 
 _Composition_ は、 Construct を介して高レベルの抽象化を定義するための重要なパターンです。高レベルの Construct は、任意の数の低レベルの Construct から構成できます。さらに、それらは、最終的に AWS リソースから構成される、さらに低レベルの Construct から構成できます。ボトムアップの観点からは、Construct を使用して、デプロイする個々の AWS リソースを、必要な数のレイヤーを使用して、目的に便利な抽象化を使用して整理します。
 
 Composition を使用すると、再利用可能なコンポーネントを定義して、他のコードと同じように共有できます。たとえば、チームは、バックアップ、グローバルレプリケーション、オートスケーリング、モニタリングを備えた DynamoDB テーブルの会社のベストプラクティスを実装する構成を定義し、それを組織内の他のチームと共有したり、公開したりできます。チームは、テーブルを定義し、チームのベストプラクティスに準拠するために、好みのプログラミング言語の他のライブラリパッケージと同じように、この構成を使用できるようになりました。ライブラリが更新されると、開発者は、他のタイプのコードに対してすでに持っているワークフローを通じて、新しいバージョンのバグ修正と改善にアクセスできるようになります。
 
-## Initialization
+### Initialization
 
 Construct は、 Construct base class を拡張して実装されます。クラスをインスタンス化することにより、 Construct を定義します。すべての Construct は、初期化時に 3 つのパラメーターを取ります。
 
@@ -61,7 +79,7 @@ new MyConstruct(this, "buz");
 
 また、 Scope を使用することで、 tagging やデプロイ先の指定など、 Construct のグループを一度に参照することができます。
 
-## Apps and stacks
+### Apps and stacks
 
 CDK アプリケーションを app と呼び、 [App クラス](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.App.html) で表現されます。次の例では、バージョニングが有効になっている単一の S3 バケットを含む単一の Stack を持つ app を定義しています。
 
@@ -97,7 +115,7 @@ class HelloCdkStack extends Stack {
 }
 ```
 
-## Using L1 constructs
+### Using L1 constructs
 
 Stack を定義したら、 その中で Construct をインスタンス化していきます。まず、 L1 Construct を使用して実行します。
 
@@ -109,7 +127,7 @@ const bucket = new s3.CfnBucket(this, "MyBucket", {
 });
 ```
 
-## Using L2 constructs
+### Using L2 constructs
 
 次の例では、[Bucket クラス](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_s3.Bucket.html)の L2 Construct を作成して S3 バケットを定義します。
 
@@ -127,7 +145,7 @@ new s3.Bucket(this, "MyFirstBucket", {
 上記の例で作成するバケットの名前では`MyFirstBucket`ありません。新しい Construct に与えられた logical identifier が設定されます。詳細については、[Physical names](./06-concepts-resources#Physical-names) を参照してください。
 :::
 
-## Configuration
+### Configuration
 
 ほとんどの Construct は 第３引数として props を受け取ります。次の例では、AWS KMS 暗号化と静的ウェブサイトホスティングが有効になっているバケットを定義しています。暗号化キーを明示的に指定しないため、この`Bucket` Construct は[内部的に `new kms.Key` を定義し、それをバケットに関連付けます。](https://github.com/yamatatsu/aws-cdk/blob/eca1e748913979646e59f4d740cf26e1c0e0f9ef/packages/@aws-cdk/aws-s3/lib/bucket.ts#L1806-L1808)
 
@@ -140,7 +158,7 @@ new s3.Bucket(this, "MyEncryptedBucket", {
 
 Construct は、「sensible defaults（気の利いたデフォルト値）」の概念に基づいて設計されています。ほとんどの構成には最小限の必要な構成があり、必要なときに構成を完全に制御しながら、すばやく開始できます。
 
-## Interacting with constructs
+### Interacting with constructs
 
 Construct は、基本の [Construct クラス](https://docs.aws.amazon.com/cdk/api/v2/docs/constructs.Construct.html)を extends したクラスです。Construct のインスタンスは、内部で持っている別の Construct を操作したり参照したりできる一連のメソッドとプロパティを公開します。AWS CDK フレームワークは、Construct の API に制限を設けていません。作成者は、必要な API を定義できます。ただし、AWS Construct Library に含まれている AWS Construct（`s3.Bucket`など）、すべての AWS リソースで一貫したエクスペリエンスを提供するために、ガイドラインと一般的なパターンに従ってください。
 
@@ -172,7 +190,7 @@ const createJobLambda = new lambda.Function(this, "create-job", {
 
 AWS Construct Library の一般的な API パターンについては、[resources](./06-concepts-resources)を参照してください。
 
-## Writing your own constructs
+### Writing your own constructs
 
 `s3.Bucket`のような既存の Construct を使うだけでなく、自分で Construct を書いて、それを誰でも app で使えるようにすることも可能です。AWS CDK では、すべての Construct が等価です。`s3.Bucket` や `sns.Topic` のような AWS CDK の Construct は、誰かが公開した NPM ライブラリや、あなたの会社の内部パッケージリポジトリから取り込んだ Construct と同じ振る舞いをします。
 
@@ -230,7 +248,7 @@ const images = new NotifyingBucket(this, "/images");
 images.topic.addSubscription(new sns_sub.SqsSubscription(queue));
 ```
 
-## The construct tree
+### The construct tree
 
 すでに見てきたように、AWS CDK アプリでは、scope 引数を使用して、Construct の「内部」に Construct を定義します。このようにして、AWS CDK アプリは、Construct tree と呼ばれる Construct の階層を定義します。
 
