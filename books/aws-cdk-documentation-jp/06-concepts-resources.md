@@ -30,7 +30,9 @@ new sqs.Queue(this, "MyQueue", {
 
 AWS Construct Library のほとんどのリソースは attributes を公開しており、AWS CloudFormation によってデプロイ時に解決されます。attributes は、リソースクラスのプロパティという形で、型名をプレフィックスとして公開されます。次の例では、`queueUrl` プロパティを使用して Amazon SQS キューの URL を取得する方法を示しています。
 
+:::message
 ここでいう attributes は CloudFormation でいうところの[Return Values](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-properties-sqs-queues-return-values)を返すため、これらを使用することでリソースとリソースに依存関係をもたせることができます。逆に言うと、自前で ARN などを文字結合で生成すると依存関係を CloudFormation に伝達できないため、デプロイ時のエラーとなる場合があります。
+:::
 
 ```ts
 import * as sqs from "aws-cdk-lib/aws-sqs";

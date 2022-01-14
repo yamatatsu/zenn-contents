@@ -28,8 +28,6 @@ class MyFirstStack extends Stack {
 
 ### The app construct
 
-To define the previous stack within the scope of an application, use the App construct. The following example app instantiates a MyFirstStack and produces the AWS CloudFormation template that the stack defined.
-
 アプリケーションの scope 内で前の Stack を定義するには、[App](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.App.html) を使用します。次のサンプルアプリは、を`MyFirstStack`をインスタンス化し、Stack の定義に従って AWSCloudFormation テンプレートを生成します。
 
 ```ts
