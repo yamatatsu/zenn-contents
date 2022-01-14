@@ -12,7 +12,7 @@ AWS CDK を書いてて、ハマるケースの多くがこの章に書かれて
 
 ## 本文
 
-[Constructs](./02-concepts-constructs)で説明したように、AWS CDK はすべての AWS リソースを表現する AWS constructs と呼ばれる豊富なクラスライブラリを提供します。このセクションでは、これらのコンストラストを使用する方法について、いくつかの一般的なパターンとベストプラクティスを説明します。
+このセクションでは、CDK を用いて AWS リソースを定義していく方法について、いくつかの一般的なパターンとベストプラクティスを説明します。
 
 CDK app で AWS リソースを定義するのは、他の construct の定義と全く同じです。construct クラスのインスタンスを作成し、最初の引数としてスコープ、construct の論理 ID、そして設定プロパティ（props）のセットを渡します。例えば、AWS Construct Library の [`sqs.Queue`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_sqs.Queue.html) コンストラストを使用して、KMS 暗号化された Amazon SQS キューを作成する方法を示します。
 
@@ -30,7 +30,7 @@ new sqs.Queue(this, "MyQueue", {
 
 AWS Construct Library のほとんどのリソースは attributes を公開しており、AWS CloudFormation によってデプロイ時に解決されます。attributes は、リソースクラスのプロパティという形で、型名をプレフィックスとして公開されます。次の例では、`queueUrl` プロパティを使用して Amazon SQS キューの URL を取得する方法を示しています。
 
-この attributes は CloudFormation でいうところの[Return Values](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-properties-sqs-queues-return-values)を返すため、これらを使用することでリソースとリソースに依存関係をもたせることができます。逆に言うと、自前で ARN などを文字結合で生成すると依存関係を CloudFormation に伝達できないため、デプロイ時のエラーとなる場合があります。
+ここでいう attributes は CloudFormation でいうところの[Return Values](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-properties-sqs-queues-return-values)を返すため、これらを使用することでリソースとリソースに依存関係をもたせることができます。逆に言うと、自前で ARN などを文字結合で生成すると依存関係を CloudFormation に伝達できないため、デプロイ時のエラーとなる場合があります。
 
 ```ts
 import * as sqs from "aws-cdk-lib/aws-sqs";
