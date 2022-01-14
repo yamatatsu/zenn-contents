@@ -218,14 +218,14 @@ import { Duration } from 'aws-cdk-lib';
 const queue = new sqs.Queue(this, 'MyQueue');
 
 const metric = queue.metricApproximateNumberOfMessagesNotVisible({
-label: 'Messages Visible (Approx)',
-period: Duration.minutes(5),
-// ...
+  label: 'Messages Visible (Approx)',
+  period: Duration.minutes(5),
+  // ...
 });
 metric.createAlarm(this, 'TooManyMessagesAlarm', {
-comparisonOperator: cw.ComparisonOperator.GREATER_THAN_THRESHOLD,
-threshold: 100,
-// ...
+  comparisonOperator: cw.ComparisonOperator.GREATER_THAN_THRESHOLD,
+  threshold: 100,
+  // ...
 });
 ```
 
