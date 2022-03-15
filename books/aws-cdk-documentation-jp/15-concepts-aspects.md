@@ -4,7 +4,7 @@ title: "Concepts - Aspects"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/aspects.html)
 
-## tl;dt
+## 著者の感想
 
 これを読んで初めて知った。S3 bucket をうっかり暗号化設定無しで作成してしまって、あとから Security Hub とかで怒られてから設定しようとして、S3 bucket 作り直しになってしまう、とか防げるのかな。やってみたい。
 

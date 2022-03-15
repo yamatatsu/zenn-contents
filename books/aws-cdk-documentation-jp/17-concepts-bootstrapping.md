@@ -4,7 +4,7 @@ title: "Concepts - Bootstrapping"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html)
 
-## tl;dt
+## 著者の感想
 
 CDK を使うときに最初に唱える呪文。ここに書かれている内容が必要になったことはないけど、大量の環境に bootstrap 唱えたいときとかは（CFn で Stack Sets 使う話とか）参考になりそう。
 

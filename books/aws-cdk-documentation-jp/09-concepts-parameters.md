@@ -4,7 +4,7 @@ title: "Concepts - Parameters"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/parameters.html)
 
-## tl;dt
+## 著者の感想
 
 [CFn の Parameters](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html)。CFn と同じように使えるけど、環境変数やコンテキストの方を使うことが推奨されている。つまりあんまり読まなくても OK。
 

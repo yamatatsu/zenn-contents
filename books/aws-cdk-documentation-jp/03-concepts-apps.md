@@ -4,7 +4,7 @@ title: "Concepts - Apps"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/apps.html)
 
-## tl;dt
+## 著者の感想
 
 CDK では `const app = new App();` から書き始めて、「CDK でプロビジョニングするアプリケーションたち」をこの`app`に関連付けていき、そしてこのコードを`cdk`コマンドで実行することでデプロイします。この章では、この動作の全体像を説明しています。
 

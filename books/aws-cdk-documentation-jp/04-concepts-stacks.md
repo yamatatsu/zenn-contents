@@ -4,7 +4,7 @@ title: "Concepts - Stacks"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/stacks.html)
 
-## tl;dt
+## 著者の感想
 
 この章では、全体的に、CloudFormation に慣れた人が CDK を使うときに覚えておくと便利なことが記載されています。特に[Stack API](#stack-api)は、「CFn でのあの記法、CDK ではどう使うんだろ？」に対応できる API が紹介されています。
 

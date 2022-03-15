@@ -4,7 +4,7 @@ title: "Concepts - Tagging"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/tagging.html)
 
-## tl;dt
+## 著者の感想
 
 CDK でのタグの付け方。オプションとかも含めて学びが多い。タグ付けが必要になったときには読み直したい。
 

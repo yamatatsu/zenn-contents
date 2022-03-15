@@ -4,7 +4,7 @@ title: "Concepts - Identifiers"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/identifiers.html)
 
-## tl;dt
+## 著者の感想
 
 [Construct IDs](#construct-ids)は読んでおいて損はないかと思う。第 2 引数に渡される`id`の説明。重複が怒られるケースと怒られないケース（scope の概念）がわかる。
 

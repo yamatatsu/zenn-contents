@@ -4,7 +4,7 @@ title: "Concepts - Resources"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/resources.html)
 
-## tl;dt
+## 著者の感想
 
 AWS CDK を書いてて、ハマるケースの多くがこの章に書かれていると思う。
 コードブロックだけでも良いので眺めていって、気になるところを文章呼んでみてもいいかも。

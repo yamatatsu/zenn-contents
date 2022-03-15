@@ -4,7 +4,7 @@ title: "Concepts - Constructs"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/constructs.html)
 
-## tl;dt
+## 著者の感想
 
 AWS CDK では主に App => Stack => AWS_Resource で構成される木構造を定義して、これをデプロイします。この章ではこれらの `App`, `Stack`, `AWS_Resource` すべての基底クラスである `Construct` クラスに焦点を当てて、その仕掛けや派生クラスについて説明しています。
 

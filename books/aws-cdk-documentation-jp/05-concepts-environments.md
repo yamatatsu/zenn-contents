@@ -4,7 +4,7 @@ title: "Concepts - Environments"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/environments.html)
 
-## tl;dt
+## 著者の感想
 
 デプロイ先の AWS アカウントやリージョンを切り替える方法や、それぞれの方法のメリットが説明されています。
 最後に TS における個人的な考えを書き足しました。

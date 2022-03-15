@@ -4,7 +4,7 @@ title: "Concepts - Assets"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/assets.html)
 
-## tl;dt
+## 著者の感想
 
 CDK の Assets を知らない場合は是非読んで欲しい。インフラデプロイとアプリケーションデプロイの境目を消して、CD の構成を容易にし、フルサイクルエンジニアが DevOps で働くのを大いに助ける、CDK における重要な機能の説明。
 

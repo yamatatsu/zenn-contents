@@ -4,7 +4,7 @@ title: "Concepts - Context"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/context.html)
 
-## tl;dt
+## 著者の感想
 
 僕は、TS を使うなら、`cdk.json`や`cdk.context.json`ではなく`settings.ts`とか`enviroment.ts`みたいなファイルに TS で書けばいいと思います。環境名(環境情報を引くキー)と秘匿情報以外は。
 

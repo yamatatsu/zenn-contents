@@ -4,7 +4,7 @@ title: "Concepts - Tokens"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/tokens.html)
 
-## tl;dt
+## 著者の感想
 
 CDK で`console.log()`とかするとたまに出てくる`${TOKEN[Bucket.Name.1234]}`みたいな文字列についての説明。Token に対してやってはいけないこととかが書いてある。
 

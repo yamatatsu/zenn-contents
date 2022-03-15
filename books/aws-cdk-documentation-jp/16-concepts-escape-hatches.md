@@ -4,7 +4,7 @@ title: "Concepts - Escape Hatches"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/cfn_layer.html)
 
-## tl;dt
+## 著者の感想
 
 「このクラス、Props にあの機能生えてないじゃん！CloudFormation ならできるのに！」ってときに読む。
 

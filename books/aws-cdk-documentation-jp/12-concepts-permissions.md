@@ -4,7 +4,7 @@ title: "Concepts - Permissions"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/permissions.html)
 
-## tl;dt
+## 著者の感想
 
 CDK を始める方は読んでおくことを強く推奨します。
 CDK では L2 以上のコンストラクト（`Cfn`で始まってるクラス以外）を使っていれば、勝手に最小限の権限が与えられた Role が生成されて割り当てられるので、Terraform や CFn と違って Role をいくつも宣言する必要がありません。それでもリソースからリソースへ権限を渡すのに`grant`メソッドをよく使うので、読んでおくとコーディングが捗ります。

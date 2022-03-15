@@ -4,7 +4,7 @@ title: "Concepts - Falure Flags"
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/featureflags.html)
 
-## tl;dt
+## 著者の感想
 
 今から CDK を使い始める場合、v2 を使うことになると思うので、知らなくても大丈夫と思います。
 
