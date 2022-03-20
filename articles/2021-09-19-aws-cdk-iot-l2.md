@@ -8,11 +8,11 @@ published: true
 
 考え中の公開ノート。
 
-# 考え中
+# 実装済み
 
 ## TopicRule
 
-進捗：コミットした。まだまだ Action を実装していく必要あり。
+現状: あとは actions を実装していけばよい。
 
 方針
 
@@ -100,6 +100,72 @@ classDiagram
 - [To Be Developed] StepFunctionsAction
 - [To Be Developed] TimestreamAction
 
+# 考え中
+
+## Thing 関連
+
+プロダクションで使われなそうなので放っておいたが、cdk の issues を見ると思ったよりニーズありそうなので、実装を考える。
+
+### CFn
+
+```mermaid
+classDiagram
+  Thing <.. ThingPrincipalAttachment
+  Thing o.. AttributePayload
+  Policy <.. ThingPrincipalAttachment
+  Policy <.. PolicyPrincipalAttachment
+  Certificate <.. PolicyPrincipalAttachment
+
+  class Thing {
+    AttributePayload ? : AttributePayload
+    ThingName ? : String
+  }
+  class AttributePayload {
+    Attributes ? : Record<string,string>
+  }
+  class Policy {
+    PolicyDocument : Json
+    PolicyName ? : String
+  }
+  class Certificate {
+    CACertificatePem ? : String
+    CertificateMode ? : String
+    CertificatePem ? : String
+    CertificateSigningRequest ? : String
+    Status : String
+  }
+  class ThingPrincipalAttachment {
+    Principal : String
+    ThingName : String
+  }
+  class PolicyPrincipalAttachment {
+    PolicyName : String
+    Principal : String
+  }
+
+```
+
+### 雑案
+
+```mermaid
+classDiagram
+  Certificate .. Policy
+  Certificate .. Thing
+
+  class Policy {
+  }
+  class Certificate {
+    +addPolicy()
+  }
+  class Thing {
+    +addCertificate()
+  }
+```
+
+### 課題
+
+Certificate の使い方なぁ。。プロダクトユースを諦めて個人利用向けにするなら、Custom Resource にして[CreateKeysAndCertificate](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateKeysAndCertificate.html)を叩く方が良いんだよなぁ。なやむ。
+
 # 一旦考えない
 
 #### Destination 関連
@@ -108,25 +174,6 @@ classDiagram
 classDiagram
       class TopicRuleDestination{
       }
-
-```
-
-#### Thing 関連
-
-```mermaid
-classDiagram
-      Certificate <.. Policy
-      Certificate <.. Thing
-      class Certificate{
-        +fromArn()$ Certificate
-      }
-      class Policy{
-        -Array<Certificate>: principals
-      }
-      class Thing{
-        -Array<Certificate>: principals
-      }
-
 ```
 
 #### Authorizer とか Domain 設定とか
