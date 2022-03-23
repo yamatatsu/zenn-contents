@@ -8,98 +8,6 @@ published: true
 
 考え中の公開ノート。
 
-# 実装済み
-
-## TopicRule
-
-現状: あとは actions を実装していけばよい。
-
-方針
-
-- Actions のあたりは EventBridge の Target と CFn の構造が似てるのでリスペクトするのが良さそう。
-
-### TopicRule
-
-```mermaid
-classDiagram
-  TopicRule ..> IAction
-  IAction ..> ActionConfig
-
-  class TopicRule {
-    -Array<IAction>: actions
-    +constructor(TopicRuleProps)
-    +addAction(IAction) void
-  }
-
-  class IAction{
-    bind() ActionConfig
-  }
-  <<Interface>> IAction
-
-  class ActionConfig{
-    CfnTopicRule.ActionProperty: configuration
-  }
-  <<Interface>> ActionConfig
-
-```
-
-### TopicRuleProps
-
-```mermaid
-classDiagram
-  class TopicRuleProps {
-    string?: ruleName
-    string: sql
-    Array<IAction>: actions
-    string?: description
-    IAction?: errorAction
-    boolean?: ruleDisabled
-  }
-
-```
-
-### TopicRuleActions
-
-package として分離している。aws-events-targets と同じイメージ。
-
-```mermaid
-classDiagram
-  IAction <|.. DynamoDBAction
-  IAction <|.. LambdaAction
-  IAction <|.. S3Action
-  IAction <|.. SnsAction
-  IAction <|.. SqsAction
-
-  class IAction{
-    bind() ActionConfig
-  }
-  <<Interface>> IAction
-
-```
-
-作るべき Action クラスは以下の通り。多い。。。
-
-- [On Going] CloudwatchAlarmAction
-- [On Going] CloudwatchLogsAction
-- [On Going] CloudwatchMetricAction
-- [On Going] DynamoDBAction
-- [On Going] DynamoDBv2Action
-- [On Going] LambdaAction
-- [On Going] RepublishAction
-- [On Going] S3Action
-- [On Going] SnsAction
-- [On Going] SqsAction
-- [To Be Developed] ElasticsearchAction
-- [To Be Developed] FirehoseAction
-- [To Be Developed] HttpAction
-- [To Be Developed] IotAnalyticsAction
-- [To Be Developed] IotEventsAction
-- [To Be Developed] IotSiteWiseAction
-- [To Be Developed] KafkaAction
-- [To Be Developed] KinesisAction
-- [To Be Developed] StepFunctionsAction
-- [To Be Developed] TimestreamAction
-
 # 考え中
 
 ## Thing 関連
@@ -227,6 +135,96 @@ classDiagram
 
 # コミット済み
 
+## TopicRule
+
+現状: あとは actions を実装していけばよい。
+
+方針
+
+- Actions のあたりは EventBridge の Target と CFn の構造が似てるのでリスペクトするのが良さそう。
+
+### TopicRule
+
+```mermaid
+classDiagram
+  TopicRule ..> IAction
+  IAction ..> ActionConfig
+
+  class TopicRule {
+    -Array<IAction>: actions
+    +constructor(TopicRuleProps)
+    +addAction(IAction) void
+  }
+
+  class IAction{
+    bind() ActionConfig
+  }
+  <<Interface>> IAction
+
+  class ActionConfig{
+    CfnTopicRule.ActionProperty: configuration
+  }
+  <<Interface>> ActionConfig
+
+```
+
+### TopicRuleProps
+
+```mermaid
+classDiagram
+  class TopicRuleProps {
+    string?: ruleName
+    string: sql
+    Array<IAction>: actions
+    string?: description
+    IAction?: errorAction
+    boolean?: ruleDisabled
+  }
+
+```
+
+### TopicRuleActions
+
+package として分離している。aws-events-targets と同じイメージ。
+
+```mermaid
+classDiagram
+  IAction <|.. DynamoDBAction
+  IAction <|.. LambdaAction
+  IAction <|.. S3Action
+  IAction <|.. SnsAction
+  IAction <|.. SqsAction
+
+  class IAction{
+    bind() ActionConfig
+  }
+  <<Interface>> IAction
+
+```
+
+作るべき Action クラスは以下の通り。多い。。。
+
+- [On Going] CloudwatchAlarmAction
+- [On Going] CloudwatchLogsAction
+- [On Going] CloudwatchMetricAction
+- [On Going] DynamoDBAction
+- [On Going] DynamoDBv2Action
+- [On Going] LambdaAction
+- [On Going] RepublishAction
+- [On Going] S3Action
+- [On Going] SnsAction
+- [On Going] SqsAction
+- [To Be Developed] ElasticsearchAction
+- [To Be Developed] FirehoseAction
+- [To Be Developed] HttpAction
+- [To Be Developed] IotAnalyticsAction
+- [To Be Developed] IotEventsAction
+- [To Be Developed] IotSiteWiseAction
+- [To Be Developed] KafkaAction
+- [To Be Developed] KinesisAction
+- [To Be Developed] StepFunctionsAction
+- [To Be Developed] TimestreamAction
+
 # ナレッジ、苦しんだこと
 
 もしかしたら人のためになるかもしれないことも書いてみる。
@@ -266,8 +264,5 @@ https://github.com/aws/aws-cdk/pull/16681#issuecomment-929944810
 
 flaky に`Out of memory`がでる。辛い。
 
-`Out of memory`について、未だ根本的な解決してない。
-
-加えて、flaky な箇所の先で、`individual-packages`上で行われるテストがコケてて辛かった。再現方法がわからん now。`scripts/transform.sh`で`individual-packages`の中身を作ってから build すれば良いんだと思われるがなかなかビルドが通らん now。
-
-更新したい。
+~~`Out of memory`について、未だ根本的な解決してない。~~
+いまはもう発生していない。
