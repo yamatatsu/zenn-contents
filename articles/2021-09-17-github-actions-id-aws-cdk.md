@@ -87,7 +87,7 @@ aws-cdk の中では AWS SDK が使われててるので、aws cli とはちょ�
 Error: Need to perform AWS calls for account XXXXXXXXXXXX, but no credentials have been configured
 ```
 
-`--varbose` をつけて実行すると、region が設定されていない旨がエラーで出てます。
+`--verbose` をつけて実行すると、region が設定されていない旨がエラーで出てます。
 
 ```
 Unable to determine the default AWS account: Error [ConfigError]: Missing region in config
