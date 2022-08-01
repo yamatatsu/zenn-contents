@@ -181,7 +181,7 @@ taskDefinition.addContainer("my-other-container", {
 
 #### Deploy-time attributes example
 
-次の例は、deploy-time attributes の `repository` と `imageUri` を使用して、AWS Fargate 起動タイプで Amazon ECS タスク定義を作成する方法を示しています。Amazon ECR のレポ検索は、URI ではなく画像のタグを必要とするので、アセットの URI の末尾からそれを切り取ることに注意してください。
+次の例は、deploy-time attributes の `repository` と `imageUri` を使用して、AWS Fargate 起動タイプで Amazon ECS タスク定義を作成する方法を示しています。Amazon ECR のレポ検索は、URI ではなくイメージのタグを必要とするので、アセットの URI の末尾からそれを切り取ることに注意してください。
 
 ```ts
 import * as ecs from "aws-cdk-lib/aws-ecs";
@@ -222,7 +222,7 @@ const asset = new DockerImageAsset(this, "MyBuildImage", {
 
 [aws-ecs](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs-readme.html) などの Docker イメージアセットをサポートするモジュールを利用する場合、アセットを直接利用する場合と [`ContainerImage.fromEcrRepository`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs.ContainerImage.html#static-fromwbrecrwbrrepositoryrepository-tag) を通じて利用する場合の権限を AWS CDK が管理します。Docker イメージアセットを直接使用する場合、消費するプリンシパルがイメージを引き出すための権限を持っていることを確認する必要があります。
 
-多くの場合、[`asset.repository.grantPull`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecr.Repository.html#grantwbrpullgrantee) メソッドを使用する必要があります。これは、プリンシパルの IAM ポリシーを変更し、このリポジトリから画像を引き出せるようにします。画像を pull するプリンシパルが同じアカウントでない場合や、AWS CodeBuild などのアカウントでロールを想定していない AWS サービスの場合は、プリンシパルのポリシーではなく、リソースポリシーで pull 権限を付与しなければなりません。[`asset.repository.addToResourcePolicy`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecr.Repository.html#addwbrtowbrresourcewbrpolicystatement) メソッドを使用して、適切なプリンシパルパーミッションを付与してください。
+多くの場合、[`asset.repository.grantPull`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecr.Repository.html#grantwbrpullgrantee) メソッドを使用する必要があります。これは、プリンシパルの IAM ポリシーを変更し、このリポジトリからイメージを引き出せるようにします。イメージを pull するプリンシパルが同じアカウントでない場合や、AWS CodeBuild などのアカウントでロールを想定していない AWS サービスの場合は、プリンシパルのポリシーではなく、リソースポリシーで pull 権限を付与しなければなりません。[`asset.repository.addToResourcePolicy`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecr.Repository.html#addwbrtowbrresourcewbrpolicystatement) メソッドを使用して、適切なプリンシパルパーミッションを付与してください。
 
 ### AWS CloudFormation resource metadata
 

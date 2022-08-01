@@ -7,14 +7,14 @@ title: "Concepts - Resources"
 ## 著者の感想
 
 AWS CDK を書いてて、ハマるケースの多くがこの章に書かれていると思う。
-コードブロックだけでも良いので眺めていって、気になるところを文章呼んでみてもいいかも。
+コードブロックだけでも良いので眺めていって、気になるところを文章読んでみてもいいかも。
 とにかく読んでほしい。
 
 ## 本文
 
 このセクションでは、CDK を用いて AWS リソースを定義していく方法について、いくつかの一般的なパターンとベストプラクティスを説明します。
 
-CDK app で AWS リソースを定義するのは、他の construct の定義と全く同じです。construct クラスのインスタンスを作成し、最初の引数としてスコープ、construct の論理 ID、そして設定プロパティ（props）のセットを渡します。例えば、AWS Construct Library の [`sqs.Queue`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_sqs.Queue.html) コンストラストを使用して、KMS 暗号化された Amazon SQS キューを作成する方法を示します。
+CDK app で AWS リソースを定義するのは、他の construct の定義と全く同じです。construct クラスのインスタンスを作成し、最初の引数としてスコープ、construct の論理 ID、そして設定プロパティ（props）のセットを渡します。例えば、AWS Construct Library の [`sqs.Queue`](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_sqs.Queue.html) コンストラクトを使用して、KMS 暗号化された Amazon SQS キューを作成する方法を示します。
 
 ```ts
 import * as sqs from "aws-cdk-lib/aws-sqs";
@@ -50,7 +50,7 @@ AWS CDK が deploy-time 属性を文字列としてエンコードする方法�
 - リソースをそのまま渡す
 - リソースの一意情報を渡す（ARN、ID、name など）
 
-例えば、Amazon ECS サービスでは、それが動作するクラスタへの参照が必要であり、Amazon CloudFront distribution では、ソースコードが含まれる S3 buckt への参照が必要です。
+例えば、Amazon ECS サービスでは、それが動作するクラスタへの参照が必要であり、Amazon CloudFront distribution では、ソースコードが含まれる S3 bucket への参照が必要です。
 
 Construct のプロパティが他の AWS Construct を表す場合、その型はその Construct のインターフェイスの型となります。例えば、Amazon ECS サービスは `ecs.ICluster` 型のプロパティ cluster を取り、CloudFront distribution は `s3.IBucket` 型のプロパティ `sourceBucket` を取ります。
 
@@ -182,7 +182,7 @@ ec2.Vpc.fromLookup(this, "PublicVpc", {
 
 ### Permission grants
 
-AWS のコンストラストは、許可要件を表現するためのシンプルな intent-based API を提供することで、最小権限原則の準拠を簡単に実現することができます。多くの AWS コンストラクトは、IAM ロールやユーザーのようなエンティティに、リソースで作業する許可を簡単に付与できる grant メソッドを提供しており、1 つ以上の IAM 許可文を手動で作成する必要はありません。
+AWS のコンストラクトは、許可要件を表現するためのシンプルな intent-based API を提供することで、最小権限原則の準拠を簡単に実現することができます。多くの AWS コンストラクトは、IAM ロールやユーザーのようなエンティティに、リソースで作業する許可を簡単に付与できる grant メソッドを提供しており、1 つ以上の IAM 許可文を手動で作成する必要はありません。
 
 次の例では、Lambda 関数の実行ロールが特定の Amazon S3 バケットにオブジェクトを読み書きできるようにするためのパーミッションを作成しています。Amazon S3 バケットが AWS KMS キーを使用して暗号化されている場合、このメソッドはまた、このキーを使用して復号化するために Lambda 関数の実行ロールパーミッションを付与します。
 
