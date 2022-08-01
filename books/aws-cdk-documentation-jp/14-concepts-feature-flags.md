@@ -1,5 +1,5 @@
 ---
-title: "Concepts - Falure Flags"
+title: "Concepts - Feature Flags"
 ---
 
 [元ドキュメント](https://docs.aws.amazon.com/cdk/v2/guide/featureflags.html)
@@ -10,9 +10,9 @@ title: "Concepts - Falure Flags"
 
 ## 本文
 
-AWS CDK は、リリースにおいて壊れる可能性のある動作を有効にするために、Falure Flags を使用します。フラグは[Runtime context](./13-concepts-context)の値として`cdk.json`（または`~/.cdk.json`）に格納されます。`cdk context --reset`や`cdk context --clear`コマンドで削除されることはありません。
+AWS CDK は、リリースにおいて壊れる可能性のある動作を有効にするために、Feature Flags を使用します。フラグは[Runtime context](./13-concepts-context)の値として`cdk.json`（または`~/.cdk.json`）に格納されます。`cdk context --reset`や`cdk context --clear`コマンドで削除されることはありません。
 
-Falure Flags はデフォルトで無効化されるため、フラグを指定しない既存のプロジェクトは、それ以降の AWS CDK リリースでも期待通りに動作し続けます。`cdk init` を使用して作成された新しいプロジェクトは、プロジェクトを作成したリリースで利用可能なすべての機能を有効にするフラグを含んでいます。AWS CDK のアップグレード後に、古い動作を好むフラグを無効にしたり、新しい動作を有効にするフラグを追加するために、`cdk.json` を編集してください。
+Feature Flags はデフォルトで無効化されるため、フラグを指定しない既存のプロジェクトは、それ以降の AWS CDK リリースでも期待通りに動作し続けます。`cdk init` を使用して作成された新しいプロジェクトは、プロジェクトを作成したリリースで利用可能なすべての機能を有効にするフラグを含んでいます。AWS CDK のアップグレード後に、古い動作を好むフラグを無効にしたり、新しい動作を有効にするフラグを追加するために、`cdk.json` を編集してください。
 
 :::message
 **Note**

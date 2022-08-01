@@ -222,7 +222,7 @@ export class NotifyingBucket extends Construct {
 
 Typically, you would also want to expose some properties or methods on your constructs. For example, it's not very useful to have a topic hidden behind your construct, because it wouldn't be possible for users of your construct to subscribe to it. Adding a topic property allows consumers to access the inner topic, as shown in the following example:
 
-通常、Construct のいくつかのプロパティまたはメソッドも公開する必要があります。たとえば、上記のように topic を`constructor`のローカル変数として扱うと Construct のユーザーが topic をサブスクライブすることはできません。topic 次の例に示すように、プロパティに追加すると、 Construct のユーザーは topic にアクセスできます。
+通常、Construct のいくつかのプロパティまたはメソッドも公開する必要があります。たとえば、上記のように topic を`constructor`のローカル変数として扱うと Construct のユーザーが topic をサブスクライブすることはできません。次の例に示すように、topic をプロパティに追加すると、 Construct のユーザーは topic にアクセスできます。
 
 ```ts
 export class NotifyingBucket extends Construct {
