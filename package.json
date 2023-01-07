@@ -10,7 +10,7 @@
     "article": "zenn new:article"
   },
   "dependencies": {
-    "prettier": "^2.6.1",
-    "zenn-cli": "^0.1.108"
+    "prettier": "^2.8.1",
+    "zenn-cli": "^0.1.134"
   }
 }
