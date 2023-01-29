@@ -23,7 +23,7 @@ published: true
 Set や Map を用いた非正規化。
 MongoDB だと「embedded data」って名前で正規化と対比させて説明されていたりする。（MongoDB の話を出してしまったが、MongoDB は embedded data に対してもクエリをかけれるので、DynamoDB の記事で名前を出すのは結構違うかもしれない。）
 
-この手法は以下の 3 つの条件を満たす場合に使える（元のブログでは 2 つと紹介されている。）
+この手法は以下の ~~3~~ 2 つの条件を満たす場合に使える（元のブログでは 2 つと紹介されている。）
 
 ### 検索キーに使われないこと
 
@@ -33,16 +33,19 @@ Set や Map として保存された Attribute は GSI を指定しても主キ�
 
 DynamoDB では Item のデータサイズは 400KB を超えることはできません。
 
-### embedded data の部分的な変更が要件にないこと
+### ~~embedded data の部分的な変更が要件にないこと~~
 
-これは元記事にはなかった条件。僕が MongoDB 畑から来たから、どうしてもこれを言いたかった。
+[2023/01/29 修正] 部分的な変更できた。。  
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html
 
-DynamoDB では Set や Map の部分的な変更はサポートされていません。
+~~これは元記事にはなかった条件。僕が MongoDB 畑から来たから、どうしてもこれを言いたかった。~~
 
-ただし、集約指向 DB として DynamoDB を扱う場合、そして、ヴァーン・ヴァーノンの IDDD 本に習って設計された集約が設計されている場合、Attribute に保存された Map や Set の部分的な変更は発生しないため、問題はなくなる。  
-なぜなら IDDD で紹介されている集約の設計では、集約は sub entity を持たず、VO のみを持つためである。
+~~DynamoDB では Set や Map の部分的な変更はサポートされていません。~~
 
-もし、集約が sub entity を持つ必要がある場合は、後述する`Composite primary key + the Query API action`パターンを用いて sub entity を別の Item に保存するのが有効であると思う。
+~~ただし、集約指向 DB として DynamoDB を扱う場合、そして、ヴァーン・ヴァーノンの IDDD 本に習って設計された集約が設計されている場合、Attribute に保存された Map や Set の部分的な変更は発生しないため、問題はなくなる。 ~~
+~~なぜなら IDDD で紹介されている集約の設計では、集約は sub entity を持たず、VO のみを持つためである。~~
+
+~~もし、集約が sub entity を持つ必要がある場合は、後述する`Composite primary key + the Query API action`パターンを用いて sub entity を別の Item に保存するのが有効であると思う。~~
 
 # Denormalization by duplicating data
 
