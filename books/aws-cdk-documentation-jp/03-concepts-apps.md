@@ -54,7 +54,7 @@ new MyApp().synth();
 
 ### App lifecycle
 
-次の図は、`cd kdeploy`を呼び出したときに AWS CDK が通過するフェーズを示しています 。このコマンドは、アプリが定義するリソースをデプロイします。
+次の図は、`cdk deploy`を呼び出したときに AWS CDK が通過するフェーズを示しています 。このコマンドは、アプリが定義するリソースをデプロイします。
 
 ![cdkライフサイクル](/images/book-aws-cdk-documentation-jp-lifecycle.png)
 _cdk ライフサイクル_
