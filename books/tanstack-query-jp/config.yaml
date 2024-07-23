@@ -1,0 +1,9 @@
+title: "TanStack Query ドキュメントの和訳メモ"
+summary: "個人用メモ。最新を追従したりはしないつもりです。"
+topics: [typescript, tanstack]
+published: false
+price: 0 # 有料の場合200〜5000
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  - 00-getting-started-overview
+  - 01-getting-started-installation
